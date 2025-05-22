@@ -42,13 +42,17 @@ def table_select(x):
         document_type.set(selected_financial[3])
         description.set(selected_financial[4])
 
-
 def remove_selected():
     selected_item = table.focus()
     if selected_item:
         table.delete(selected_item)
 
+def edit_btn_click():
+    # Implement edit functionality here
+    pass
 
+def remove_btn_click():
+    remove_selected()  # Call the function to remove the selected item
 
 window = Tk()
 window.title("Financial Info")
@@ -72,10 +76,10 @@ Entry(window, textvariable=date_time).place(x=80, y=100)
 # Document Type
 Label(window, text="Document Type").place(x=20, y=140)
 document_type = StringVar(value="pay")
-OptionMenu(window, document_type, "pa", "receive").place(x=150, y=140)
+OptionMenu(window, document_type, "pay", "receive").place(x=150, y=140)  # Corrected "pa" to "pay"
 
 # Description
-Label(window, text="Description").place(x=20, y=180)
+Label(window, text="Description").place(x=19, y=180)
 description = StringVar()
 Entry(window, textvariable=description).place(x=80, y=180)
 
@@ -96,10 +100,10 @@ table.bind("<<TreeviewSelect>>", table_select)
 
 table.place(x=230, y=20)
 
-Button(window, text="Save", width=6, command=save_btn_click).place(x=10, y=220)
-Button(window, text="Clear", width=6, command=reset_form).place(x=70, y=220)
-Button(window, text="Remove", width=6, command=reset_form).place(x=130, y=220)
-Button(window, text="Edit", width=6, command=window.destroy).place(x=190, y=220)
+Button(window, text="Save", width=6, command=save_btn_click).place(x=20, y=220)
+Button(window, text="Edit", width=6, command=edit_btn_click).place(x=90, y=220)
+Button(window, text="Remove", width=6, command=remove_btn_click).place(x=160, y=220)
+Button(window, text="Clear", width=6, command=reset_form).place(x=20, y=180, width=190)
 
 reset_form()
 
