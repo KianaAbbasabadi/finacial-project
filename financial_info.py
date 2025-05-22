@@ -42,6 +42,14 @@ def table_select(x):
         document_type.set(selected_financial[3])
         description.set(selected_financial[4])
 
+
+def remove_selected():
+    selected_item = table.focus()
+    if selected_item:
+        table.delete(selected_item)
+
+
+
 window = Tk()
 window.title("Financial Info")
 window.geometry("610x350")
@@ -90,8 +98,8 @@ table.place(x=230, y=20)
 
 Button(window, text="Save", width=6, command=save_btn_click).place(x=20, y=220)
 Button(window, text="Clear", width=6, command=reset_form).place(x=90, y=220)
-Button(window , text="remove" , width=6, command=reset_form).place(x=150, y=220)
-Button(window, text="edit", width=6, command=window.destroy).place(x=230, y=220)`
+Button(window, text="Remove", width=6, command=reset_form).place(x=150, y=220)
+Button(window, text="Edit", width=6, command=window.destroy).place(x=230, y=220)
 
 reset_form()
 
