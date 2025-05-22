@@ -72,7 +72,7 @@ Entry(window, textvariable=date_time).place(x=80, y=100)
 # Document Type
 Label(window, text="Document Type").place(x=20, y=140)
 document_type = StringVar(value="pay")
-OptionMenu(window, document_type, "pay", "receive").place(x=150, y=140)
+OptionMenu(window, document_type, "pa", "receive").place(x=150, y=140)
 
 # Description
 Label(window, text="Description").place(x=20, y=180)
@@ -96,10 +96,10 @@ table.bind("<<TreeviewSelect>>", table_select)
 
 table.place(x=230, y=20)
 
-Button(window, text="Save", width=6, command=save_btn_click).place(x=20, y=220)
-Button(window, text="Clear", width=6, command=reset_form).place(x=90, y=220)
-Button(window, text="Remove", width=6, command=reset_form).place(x=150, y=220)
-Button(window, text="Edit", width=6, command=window.destroy).place(x=230, y=220)
+Button(window, text="Save", width=6, command=save_btn_click).place(x=10, y=220)
+Button(window, text="Clear", width=6, command=reset_form).place(x=70, y=220)
+Button(window, text="Remove", width=6, command=reset_form).place(x=130, y=220)
+Button(window, text="Edit", width=6, command=window.destroy).place(x=190, y=220)
 
 reset_form()
 
