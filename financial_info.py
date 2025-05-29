@@ -2,9 +2,10 @@ from tkinter import *
 import tkinter.ttk as ttk
 import tkinter.messagebox as msg
 from file_manager import *
-from validator import *
+from financial import Financial
 
 financial_list = read_from_file("financials.dat")
+
 
 def load_data(financial_list):
     financial_list = read_from_file("financials.dat")
@@ -12,7 +13,8 @@ def load_data(financial_list):
         table.delete(row)
 
     for financial in financial_list:
-        table.insert("", END, values=financial)
+        table.insert("", END, values=financial.to_tuple())
+
 
 def reset_form():
     id.set(len(financial_list) + 1)
@@ -22,9 +24,11 @@ def reset_form():
     description.set("")
     load_data(financial_list)
 
+
 def save_btn_click():
-    financial = (id.get(), amount.get(), date_time.get(), document_type.get(), description.get())
-    errors = financial_validator(financial)
+    financial = Financial(id.get(), amount.get(), date_time.get(), document_type.get(), description.get())
+    errors = financial.validator()
+
     if errors:
         msg.showerror("Errors", "\n".join(errors))
     else:
@@ -32,6 +36,7 @@ def save_btn_click():
         financial_list.append(financial)
         write_to_file("financials.dat", financial_list)
         reset_form()
+
 
 def table_select(x):
     selected_financial = table.item(table.focus())["values"]
@@ -42,17 +47,21 @@ def table_select(x):
         document_type.set(selected_financial[3])
         description.set(selected_financial[4])
 
+
 def remove_selected():
     selected_item = table.focus()
     if selected_item:
         table.delete(selected_item)
 
+
 def edit_btn_click():
     # Implement edit functionality here
     pass
 
+
 def remove_btn_click():
     remove_selected()  # Call the function to remove the selected item
+
 
 window = Tk()
 window.title("Financial Info")
