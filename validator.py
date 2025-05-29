@@ -11,9 +11,9 @@ def financial_validator(financial):
 
     # date time
 
-    if financial.document_type not in ["pay", "receive"]:
-        errors.append('Document Type must be either "pay" or "receive"')
+    if financial.document_type not in ["Income", "Outcome"]:
+        errors.append('Document Type must be either "Income" or "Outcome"')
 
-    if not (type(financial.description) == str and len(financial.description) > 0):
-        errors.append('Description can  not be empty')
+    if not (type(financial.comment) == str and len(financial.comment) > 0):
+        errors.append('Comment can  not be empty')
     return errors
